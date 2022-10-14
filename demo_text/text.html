@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    body {
+      background: #ccc;
+    }
+
+    #js_text {
+      font-family: 'Fuzzy Bubbles', cursive;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      display: block;
+      top: 0;
+      left: 0;
+      z-index: -9999;
+      font-size: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wapper">
+    <div id="js_text">THREE JS TEXT DEMO</div>
+  </div>
+
+  <script type="x-shader/x-vertex" id="vertexshader">
+
+        attribute float size;
+      
+        void main() {
+      
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          gl_PointSize = size * ( 300.0 / -mvPosition.z );
+          gl_Position = projectionMatrix * mvPosition;
+      
+        }
+      
+      </script>
+  <script type="x-shader/x-fragment" id="fragmentshader">
+
+       uniform vec3 color;
+      
+       void main() {
+      
+         gl_FragColor = vec4( color , 1 );
+      
+       }
+      </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js"></script>
+  <script src="js/text.js"></script>
+</body>
+
+</html>
